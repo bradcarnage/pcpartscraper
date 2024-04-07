@@ -20,6 +20,13 @@ class Part:
             return type_string.find('li').find('a').get_text()
         except:  return None
 
+    def images(self):
+        try:
+            product_images = self.HTML.find_all('img', alt=lambda alt: alt and "Product Image" in alt)
+            return [img['src'] for img in product_images]
+        except:
+            return None
+
     def amazon_link(self):
         try:
             links = self.soup.find_all('a',href=True)
